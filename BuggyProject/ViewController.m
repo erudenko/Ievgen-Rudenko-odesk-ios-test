@@ -55,16 +55,13 @@
 }
 
 - (IBAction)fourthBug:(id)sender {
-	static NSInteger count = 1;
-	if (count>1) {
+	if ([CoreDataHelpers countForFetchRequestWithName:@"AllModels"]>0) {
 		[CoreDataHelpers cleanData];
 	}
 	
 	[CoreDataHelpers fillUnsortedData];
 	NSArray *models = [CoreDataHelpers arrayForFetchRequestWithName:@"AllModels"];
 	NSLog(@"%@", models);
-	
-	count++;
 }
 
 - (IBAction)fifthBug:(id)sender {

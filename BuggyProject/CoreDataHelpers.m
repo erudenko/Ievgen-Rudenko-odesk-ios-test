@@ -55,6 +55,23 @@
 	return result;
 }
 
++ (NSUInteger)countForFetchRequestWithName: (NSString*)name {
+	NSFetchRequest *request = [CoreDataHelpers fetchRequestWithName:name];
+	NSManagedObjectContext *context = [CoreDataHelpers currentContext];
+    
+    NSError *error = nil;
+    NSUInteger count = [context countForFetchRequest:request error:&error];
+    NSAssert(!error, @"Something gone wrong");
+    if (error) {
+        NSLog(@"Error getting data count:%@", error);
+        return NSNotFound;
+    } else {
+        return count;
+    }
+    
+}
+
+
 + (void)fillUnsortedData {
 	NSManagedObjectContext *context = [CoreDataHelpers currentContext];
 	
