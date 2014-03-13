@@ -13,6 +13,9 @@
 + (NSFetchRequest *)fetchRequestWithName: (NSString *)name;
 + (NSArray *)arrayForFetchRequestWithName: (NSString *)name;
 
++ (NSArray *)sortedArrayForFetchRequestWithName: (NSString *)name;
++ (NSUInteger)countForFetchRequestWithName: (NSString*)name;
+
 + (void)fillUnsortedData;
 + (void)fillSortedData;
 + (void)cleanData;
