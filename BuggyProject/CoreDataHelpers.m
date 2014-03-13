@@ -55,6 +55,22 @@
 	return result;
 }
 
++ (NSArray *)sortedArrayForFetchRequestWithName: (NSString *)name {
+	NSFetchRequest *request = [[CoreDataHelpers fetchRequestWithName:name] copy];
+	NSManagedObjectContext *context = [CoreDataHelpers currentContext];
+    NSArray *sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"owner.ownerName" ascending:YES],
+                                 [NSSortDescriptor sortDescriptorWithKey:@"modelName" ascending:YES]];
+    request.sortDescriptors = sortDescriptors;
+	NSError *error = nil;
+	NSArray *result = [context executeFetchRequest:request error:&error];
+	if (error) {
+		result = [NSArray array];
+		NSLog(@"%@", [error localizedFailureReason]);
+	}
+	
+	return result;
+}
+
 + (NSUInteger)countForFetchRequestWithName: (NSString*)name {
 	NSFetchRequest *request = [CoreDataHelpers fetchRequestWithName:name];
 	NSManagedObjectContext *context = [CoreDataHelpers currentContext];

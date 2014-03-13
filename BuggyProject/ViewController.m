@@ -66,7 +66,7 @@
 
 - (IBAction)fifthBug:(id)sender {
 	[CoreDataHelpers fillUnsortedData];
-	NSArray *models = [CoreDataHelpers arrayForFetchRequestWithName:@"AllModels"];
+	NSArray *models = [CoreDataHelpers sortedArrayForFetchRequestWithName:@"AllModels"];
 	NSLog(@"%@", models);
 }
 
